@@ -20,7 +20,6 @@ function PageList() {
         dispatch(getPages())
     }, [])
     console.log("pages", pages)
-    console.log("Array.isArray(pages)", Array.isArray(pages))
 
     return (
         <Layout>
