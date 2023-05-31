@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {StrictMode} from 'react';
+import {createRoot} from "react-dom/client";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import Home from "./pages/Home"
+import Blog from "./pages/Blog"
+import About from "./pages/About"
+import Contact from "./pages/Contact"
+import NotFound from "./pages/NotFound"
+import Dashboard from "./pages/admin/Dashboard";
+import PageList from "./pages/admin/page/PageList";
+import store from "./store";
+import {Provider} from "react-redux";
+import PageCreate from "./pages/admin/page/PageCreate";
+import PageEdit from "./pages/admin/page/PageEdit";
+import Login from "./pages/admin/Login";
+import "./styles/app.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Home/>}/>
+          <Route path="/blog" element={<Blog/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/contact" element={<Contact/>}/>
+
+          <Route path="/admin" element={<Dashboard/>}/>
+          <Route path="/admin/login" element={<Login/>}/>
+
+          <Route path="/pages" element={<PageList/>}/>
+          <Route path="/pages/create" element={<PageCreate/>}/>
+          <Route path="/pages/:id/edit" element={<PageEdit/>}/>
+
+          <Route element={<NotFound/>}/>
+        </Routes>
+      </Router>
   );
 }
 
-export default App;
+if (document.getElementById('root')) {
+  const rootElement = document.getElementById("root");
+  const root = createRoot(rootElement);
+
+  root.render(
+      <Provider store={store}>
+        <StrictMode>
+          <App/>
+        </StrictMode>
+      </Provider>
+  );
+}
