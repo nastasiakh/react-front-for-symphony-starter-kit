@@ -14,6 +14,7 @@ import PageCreate from "./pages/admin/page/PageCreate";
 import PageEdit from "./pages/admin/page/PageEdit";
 import Login from "./pages/admin/Login";
 import "./styles/app.css";
+import SignUp from "./pages/admin/SignUp";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
 
           <Route path="/admin" element={<Dashboard/>}/>
           <Route path="/admin/login" element={<Login/>}/>
+          <Route path="/admin/signUp" element={<SignUp/>}/>
 
           <Route path="/pages" element={<PageList/>}/>
           <Route path="/pages/create" element={<PageCreate/>}/>

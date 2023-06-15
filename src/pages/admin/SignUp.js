@@ -8,11 +8,14 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 
-function Login() {
+function SignUp() {
     library.add(faEye, faEyeSlash);
     const [credentials, setCredentials] = useState({
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
+        confirmedPassword: ''
     })
     const [visiblePassword, setPasswordVisible] = useState(false)
 
@@ -34,14 +37,28 @@ function Login() {
             <div className="container">
                 <div className="d-flex col-10 flex-column container position-relative">
                     <div className="">
-                        <h2 className="text-center mt-5 mb-3">Authorisation</h2>
+                        <h2 className="text-center mt-5 mb-3">Sign Up</h2>
                     </div>
                     <div className="d-flex flex-column align-items-center">
                         <div className="w-100 d-flex justify-content-center">
-                            <Input name="email" value={credentials.email} label="Email" placeholder="Enter username or email"
+                            <Input name="firstName" value={credentials.email} label="First name" placeholder="Enter your name"
+                                   changeAction={(e) => handleCredentials(e, 'firstName')} style={{width: "100%"}}/>
+                            {errors && errors.name ?
+                                <div style={{color: 'red'}}>{errors.name}</div>
+                                : ''}
+                        </div>
+                        <div className="w-100 d-flex justify-content-center">
+                            <Input name="lastName" value={credentials.email} label="Last name" placeholder="Enter your lastname"
+                                   changeAction={(e) => handleCredentials(e, 'lastName')} style={{width: "100%"}}/>
+                            {errors && errors.name ?
+                                <div style={{color: 'red'}}>{errors.name}</div>
+                                : ''}
+                        </div>
+                        <div className="w-100 d-flex justify-content-center">
+                            <Input name="email" value={credentials.email} label="Email" placeholder="Enter email"
                                    changeAction={(e) => handleCredentials(e, 'email')} style={{width: "100%"}}/>
                             {errors && errors.name ?
-                                <div style={{color: 'red'}}>{errors.email}</div>
+                                <div style={{color: 'red'}}>{errors.name}</div>
                                 : ''}
                         </div>
                         <div className="form_group field mb-2">
@@ -49,6 +66,15 @@ function Login() {
                                    onChange={(e) => handleCredentials(e, 'password')}
                                    value={credentials.password}/>
                             <label htmlFor="password" className="form_label">Password</label>
+                            <button className="visibility-button password" onClick={() => setPasswordVisible(!visiblePassword)}>
+                                <FontAwesomeIcon icon={visiblePassword ? faEyeSlash : faEye}></FontAwesomeIcon>
+                            </button>
+                        </div>
+                        <div className="form_group field mb-2">
+                            <input type={visiblePassword ? "text" : "password"} className="form_field" placeholder="Confirm password" name="confirmedPassword" id="confirmedPassword" required
+                                   onChange={(e) => handleCredentials(e, 'confirmedPassword')}
+                                   value={credentials.password}/>
+                            <label htmlFor="confirmedPassword" className="form_label">Password</label>
                             <button className="visibility-button password" onClick={() => setPasswordVisible(!visiblePassword)}>
                                 <FontAwesomeIcon icon={visiblePassword ? faEyeSlash : faEye}></FontAwesomeIcon>
                             </button>
@@ -63,4 +89,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default SignUp;
