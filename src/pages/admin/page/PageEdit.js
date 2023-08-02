@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react'
 import Layout from "../../../components/admin/Layout";
 import Header from "../../../components/admin/Header";
 import {useDispatch, useSelector} from "react-redux";
-import {getPage, updatePage} from "../../../actions/page";
+import {getPage, updatePage} from "../../../state/actions/page";
 import {useParams} from "react-router-dom";
+import {errorSelector} from "../../../state/selectors";
 
 function PageEdit() {
 
@@ -24,7 +25,7 @@ function PageEdit() {
         });
     }, []);
 
-    const errors = useSelector(state => state.errors)
+    const errors = useSelector(errorSelector)
 
     const handlePage = (e, field) => {
         setPage({...page, [field]: e.target.value})

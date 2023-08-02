@@ -7,12 +7,8 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
     config => {
-        const token = store.getState().token;
-
-        console.log('interceptors', store.getState().token )
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
+        const token = store.getState().auth;
+        config.headers.Authorization = `Bearer ${token}`;
 
         return config;
     },

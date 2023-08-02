@@ -1,6 +1,6 @@
-import {CREATE_PAGE, DELETE_PAGE, GET_PAGES, RESET_ERRORS, SET_ERRORS, UPDATE_PAGE,} from "./types";
+import {CREATE_PAGE, DELETE_PAGE, GET_PAGES, RESET_ERRORS, SET_ERRORS, UPDATE_PAGE,} from "./actionTypes";
 
-import PageDataService from "../services/page.service";
+import PageDataService from "../../services/page.service";
 
 
 export const getPages = () => async (dispatch) => {

@@ -1,9 +1,13 @@
 import React, {useEffect} from 'react';
 import {Link, useLocation} from "react-router-dom";
 import "../styles/app.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {library} from "@fortawesome/fontawesome-svg-core";
+import {faRightToBracket} from "@fortawesome/free-solid-svg-icons";
 
 
 function Header() {
+    library.add(faRightToBracket)
     const location = useLocation();
     const pageLinks = [
         {
@@ -34,6 +38,7 @@ function Header() {
             if (page.url === location.pathname) {
                 document.title = page.name;
             }
+            return document;
         });
     }, [])
 
@@ -59,6 +64,9 @@ function Header() {
                     }
                 </ul>
             </div>
+            <Link to="/admin/login"  className={'nav-link me-2 '}>Log In
+                <FontAwesomeIcon icon={faRightToBracket} />
+            </Link>
         </nav>
     );
 }

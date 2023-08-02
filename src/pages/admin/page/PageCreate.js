@@ -2,11 +2,12 @@ import React, {useState} from 'react'
 import Layout from "../../../components/admin/Layout";
 import Header from "../../../components/admin/Header";
 import {useDispatch, useSelector} from "react-redux";
-import {createPage} from "../../../actions/page";
+import {createPage} from "../../../state/actions/page";
 import Input from "../../../components/base_elements/Input";
 import Textarea from "../../../components/base_elements/Textarea";
 import Select from "../../../components/base_elements/Select";
 import {Link} from "react-router-dom";
+import {errorSelector} from "../../../state/selectors";
 
 function PageCreate() {
 
@@ -19,10 +20,9 @@ function PageCreate() {
         status: true,
     })
 
-    const errors = useSelector(state => state.errors)
+    const errors = useSelector(errorSelector)
 
     const handlePage = (e, field) => {
-        console.log(e.target.value)
         setPage({...page, [field]: e.target.value})
     }
 

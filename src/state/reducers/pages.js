@@ -1,4 +1,4 @@
-import {CREATE_PAGE, DELETE_PAGE, GET_PAGE, GET_PAGES, UPDATE_PAGE,} from "../actions/types";
+import {CREATE_PAGE, DELETE_PAGE, GET_PAGE, GET_PAGES, UPDATE_PAGE,} from "../actions/actionTypes";
 
 const initialState = [];
 

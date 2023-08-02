@@ -1,14 +1,17 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Layout from "../../components/admin/Layout";
 import Header from "../../components/admin/Header";
 import {useDispatch, useSelector} from "react-redux";
-import {login} from "../../actions/auth";
+import {login} from "../../state/actions/auth";
 import Input from "../../components/base_elements/Input";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from 'react-router-dom';
+import {errorSelector, tokenSelector} from "../../state/selectors";
 
-function Login() {
+
+const Login = (props) => {
     library.add(faEye, faEyeSlash);
     const [credentials, setCredentials] = useState({
         email: '',
@@ -16,17 +19,25 @@ function Login() {
     })
     const [visiblePassword, setPasswordVisible] = useState(false)
 
-    const errors = useSelector(state => state.errors)
+    const loggedIn = useSelector(tokenSelector);
+    const errors = useSelector(errorSelector);
 
     const handleCredentials = (e, field) => {
         setCredentials({...credentials, [field]: e.target.value})
     }
-
     const dispatch = useDispatch();
+    const navigateTo = useNavigate();
 
     const handleLogin = () => {
         dispatch(login(credentials))
-    }
+    };
+
+    useEffect(() => {
+        if (loggedIn && loggedIn.length){
+            navigateTo('/dashboard');
+        }
+    }, [loggedIn]);
+
 
     return (
         <Layout>

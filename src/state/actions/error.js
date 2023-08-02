@@ -1,4 +1,4 @@
-import {RESET_ERRORS, SET_ERRORS,} from "./types";
+import {RESET_ERRORS, SET_ERRORS,} from "./actionTypes";
 
 export const setErrors = (messages) => async (dispatch) => {
     try {

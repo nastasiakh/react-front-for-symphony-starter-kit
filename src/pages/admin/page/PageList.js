@@ -3,23 +3,22 @@ import Layout from "../../../components/admin/Layout";
 import Header from "../../../components/admin/Header";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {getPages} from "../../../actions/page";
+import {getPages} from "../../../state/actions/page";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {faPencil, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {pageSelector} from "../../../state/selectors";
 
 
 function PageList() {
     library.add(faTrash, faPencil);
 
-    const pages = useSelector(state => state.pages)
-
+    const pages = useSelector(pageSelector)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getPages())
     }, [])
-    console.log("pages", pages)
 
     return (
         <Layout>

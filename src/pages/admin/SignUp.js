@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Layout from "../../components/admin/Layout";
 import Header from "../../components/admin/Header";
 import {useDispatch, useSelector} from "react-redux";
-import {login} from "../../actions/auth";
+import {signUp} from "../../state/actions/auth";
 import Input from "../../components/base_elements/Input";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {library} from "@fortawesome/fontawesome-svg-core";
@@ -15,7 +15,7 @@ function SignUp() {
         lastName: '',
         email: '',
         password: '',
-        confirmedPassword: ''
+        confirmPassword: ''
     })
     const [visiblePassword, setPasswordVisible] = useState(false)
 
@@ -28,7 +28,7 @@ function SignUp() {
     const dispatch = useDispatch();
 
     const handleLogin = () => {
-        dispatch(login(credentials))
+        dispatch(signUp(credentials))
     }
 
     return (
@@ -41,14 +41,14 @@ function SignUp() {
                     </div>
                     <div className="d-flex flex-column align-items-center">
                         <div className="w-100 d-flex justify-content-center">
-                            <Input name="firstName" value={credentials.email} label="First name" placeholder="Enter your name"
+                            <Input name="firstName" value={credentials.firstName} label="First name" placeholder="Enter your name"
                                    changeAction={(e) => handleCredentials(e, 'firstName')} style={{width: "100%"}}/>
                             {errors && errors.name ?
                                 <div style={{color: 'red'}}>{errors.name}</div>
                                 : ''}
                         </div>
                         <div className="w-100 d-flex justify-content-center">
-                            <Input name="lastName" value={credentials.email} label="Last name" placeholder="Enter your lastname"
+                            <Input name="lastName" value={credentials.lastName} label="Last name" placeholder="Enter your lastname"
                                    changeAction={(e) => handleCredentials(e, 'lastName')} style={{width: "100%"}}/>
                             {errors && errors.name ?
                                 <div style={{color: 'red'}}>{errors.name}</div>
@@ -71,10 +71,10 @@ function SignUp() {
                             </button>
                         </div>
                         <div className="form_group field mb-2">
-                            <input type={visiblePassword ? "text" : "password"} className="form_field" placeholder="Confirm password" name="confirmedPassword" id="confirmedPassword" required
-                                   onChange={(e) => handleCredentials(e, 'confirmedPassword')}
-                                   value={credentials.password}/>
-                            <label htmlFor="confirmedPassword" className="form_label">Password</label>
+                            <input type={visiblePassword ? "text" : "password"} className="form_field" placeholder="Confirm password" name="confirmPassword" id="confirmPassword" required
+                                   onChange={(e) => handleCredentials(e, 'confirmPassword')}
+                                   value={credentials.confirmPassword}/>
+                            <label htmlFor="confirmPassword" className="form_label">Password</label>
                             <button className="visibility-button password" onClick={() => setPasswordVisible(!visiblePassword)}>
                                 <FontAwesomeIcon icon={visiblePassword ? faEyeSlash : faEye}></FontAwesomeIcon>
                             </button>

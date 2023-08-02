@@ -1,4 +1,4 @@
-import {RESET_ERRORS, SET_ERRORS,} from "../actions/types";
+import {RESET_ERRORS, SET_ERRORS,} from "../actions/actionTypes";
 
 const initialState = [];
 
