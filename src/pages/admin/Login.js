@@ -34,7 +34,7 @@ const Login = (props) => {
 
     useEffect(() => {
         if (loggedIn && loggedIn.length){
-            navigateTo('/dashboard');
+            navigateTo('/admin');
         }
     }, [loggedIn]);
 

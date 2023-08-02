@@ -28,17 +28,19 @@ function App() {
                 <Route path="/about" element={<About/>}/>
                 <Route path="/contact" element={<Contact/>}/>
 
-                <Route path="/admin" element={<Dashboard/>}/>
                 <Route path="/admin/login" element={<Login/>}/>
                 <Route path="/admin/signUp" element={<SignUp/>}/>
 
-                { authenticated.length ? [
-                    <Route path="/dashboard" element={<Dashboard/>}/>,
-                    <Route path="/pages" element={<PageList/>}/>,
-                    <Route path="/pages/create" element={<PageCreate/>}/>,
-                    <Route path="/pages/:id/edit" element={<PageEdit/>}/>,
-                    ]
-                    : <Route path="/redirect" element={<Navigate to="/admin/login" />} />
+                { authenticated.length ? (
+                    <Routes>
+                        <Route path="/admin" element={<Dashboard/>}/>
+                        <Route path="/pages" element={<PageList/>}/>
+                        <Route path="/pages/create" element={<PageCreate/>}/>
+                        <Route path="/pages/:id/edit" element={<PageEdit/>}/>
+                    </Routes>
+                ) : (
+                    <Route path="*" element={<Navigate replace to="/admin/login"/>}/>
+                )
                 }
 
                 <Route element={<NotFound/>}/>
