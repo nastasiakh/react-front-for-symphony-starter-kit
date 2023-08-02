@@ -32,12 +32,12 @@ function App() {
                 <Route path="/admin/signUp" element={<SignUp/>}/>
 
                 { authenticated.length ? (
-                    <Routes>
+                    <>
                         <Route path="/admin" element={<Dashboard/>}/>
                         <Route path="/pages" element={<PageList/>}/>
                         <Route path="/pages/create" element={<PageCreate/>}/>
                         <Route path="/pages/:id/edit" element={<PageEdit/>}/>
-                    </Routes>
+                    </>
                 ) : (
                     <Route path="*" element={<Navigate replace to="/admin/login"/>}/>
                 )
