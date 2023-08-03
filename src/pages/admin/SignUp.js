@@ -20,24 +20,24 @@ function SignUp() {
     const [visiblePassword, setPasswordVisible] = useState(false)
 
     const errors = useSelector(state => state.errors)
-
+    const userCreated = useSelector(state => state.auth.userCreated)
     const handleCredentials = (e, field) => {
         setCredentials({...credentials, [field]: e.target.value})
     }
-
     const dispatch = useDispatch();
 
-    const handleLogin = () => {
+    const handleSignUp = () => {
         dispatch(signUp(credentials))
-    }
+    };
 
     return (
         <Layout>
             <Header/>
             <div className="container">
                 <div className="d-flex col-10 flex-column container position-relative">
-                    <div className="">
+                    <div className="text-center mt-5 mb-3">
                         <h2 className="text-center mt-5 mb-3">Sign Up</h2>
+                        <span>Already have an account? <a href={'/admin/login'}>Log in</a></span>
                     </div>
                     <div className="d-flex flex-column align-items-center">
                         <div className="w-100 d-flex justify-content-center">
@@ -80,8 +80,13 @@ function SignUp() {
                             </button>
                         </div>
                         <div className="d-flex col-5">
-                            <button className="app-button" onClick={handleLogin}>Login</button>
+                            <button className="app-button" onClick={handleSignUp}>Sign up</button>
                         </div>
+                        { userCreated &&
+                            <div className="text-center mt-5 mb-3">
+                                <h3>User successfully signed up! <a href={'/admin/login'}>Log in</a> to continue work.</h3>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

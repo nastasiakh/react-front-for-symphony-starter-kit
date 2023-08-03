@@ -1,7 +1,8 @@
-import {RESET_TOKEN, SET_TOKEN} from "../actions/actionTypes";
+import {CREATE_USER, RESET_TOKEN, SET_TOKEN} from "../actions/actionTypes";
 
 const initialState = {
     token: null,
+    userCreated: false
 };
 
 function authReducer(state = initialState, action) {
@@ -11,10 +12,13 @@ function authReducer(state = initialState, action) {
     switch (type) {
 
         case SET_TOKEN:
-            return payload;
+            return { ...state, token: payload};
+
+        case CREATE_USER:
+            return {...state, userCreated: true }
 
         case RESET_TOKEN:
-            return null;
+            return {...state, token: null};
 
         default:
             return state;

@@ -9,4 +9,5 @@ export const RESET_ERRORS = 'RESET_ERRORS';
 
 // auth
 export const SET_TOKEN = "SET_TOKEN";
+export const CREATE_USER = "CREATE_USER";
 export const RESET_TOKEN = "RESET_TOKEN";

@@ -12,6 +12,13 @@ class AuthService {
     };
     signUp(credentials) {
         return axiosInstance.post("auth/signUp", credentials)
+            .then((response) => {
+                console.log(response.status)
+                if (response.status === 200) {
+                    return response.status;
+                }
+                return response.data;
+            })
     }
 }
 

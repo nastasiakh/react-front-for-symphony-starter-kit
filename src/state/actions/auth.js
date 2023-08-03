@@ -1,5 +1,5 @@
 import AuthService from "../../services/auth.service";
-import {SET_TOKEN} from "./actionTypes";
+import {CREATE_USER, SET_TOKEN} from "./actionTypes";
 
 export const login = (credentials) => async (dispatch) => {
     try {
@@ -16,11 +16,9 @@ export const login = (credentials) => async (dispatch) => {
 
 export const signUp = (credentials) => async (dispatch) => {
     try {
-        const res = await AuthService.signUp(credentials);
-
+        await AuthService.signUp(credentials);
         dispatch({
-            type: SET_TOKEN,
-            payload: res.data.token
+            type: CREATE_USER
         });
     } catch (err) {
         console.log("SignUp", err);
