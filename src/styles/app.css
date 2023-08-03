@@ -6,13 +6,15 @@
     --secondary: #0d6efd4a;
 }
 
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
 }
+
 html {
     height: 100%;
 }
+
 body {
     min-height: 100%;
     margin: 0 auto;
@@ -20,7 +22,8 @@ body {
     background-color: #ffffff;
     font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
 }
-aside .navbar{
+
+aside .navbar {
     position: fixed;
     height: 100%;
     left: 0;
@@ -29,40 +32,46 @@ aside .navbar{
     bottom: 0;
 }
 
-.heading{
+.heading {
     font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
     font-weight: bold;
 }
-.navbar{
+
+.navbar {
     background-color: #405cf5;
     color: #fff;
     padding-left: 1rem;
     padding-right: 1rem;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    top:0;
-    bottom:0;
+    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
 }
+
 .navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 1rem;
     padding-left: 1rem;
 }
-.navbar-brand{
+
+.navbar-brand {
     color: #fff;
     font-size: 20px;
     font-weight: bold;
 }
-.navbar .nav-link{
+
+.navbar .nav-link {
     color: #fff;
 }
+
 .navbar .nav-link:focus,
-.navbar .nav-link:hover{
+.navbar .nav-link:hover {
     color: #fff;
     box-shadow: #dee2e6 0 1px 1px 0 inset, rgb(50 50 93 / 25%) 0 50px 100px -20px, rgb(0 0 0 / 30%) 0 30px 60px -30px;
 }
-.app-button{
+
+.app-button {
     backface-visibility: hidden;
     background-color: #405cf5;
     border-radius: 6px;
@@ -98,26 +107,32 @@ aside .navbar{
 
 .app-button:disabled {
     cursor: default;
+    background: var(--gray);
+    border: none;
 }
 
 .app-button:focus {
     box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
 }
+
 .app-button.action-button {
     color: #fff;
     margin: 0 5px;
     padding: 5px 15px;
 }
+
 .app-button.action-button.caution {
     background-color: var(--red);
 }
-.app-button.secondary{
+
+.app-button.secondary {
     background: transparent;
     border: 2px solid var(--primary);
     box-sizing: border-box;
     color: black;
 }
-.visibility-button{
+
+.visibility-button {
     display: block;
     border: none;
     outline: none;
@@ -125,15 +140,18 @@ aside .navbar{
     color: var(--primary);
     cursor: pointer;
 }
-.visibility-button.password{
+
+.visibility-button.password {
     position: absolute;
     top: 50%;
     right: 0;
 }
-thead tr{
+
+thead tr {
     box-sizing: border-box;
     border-bottom: 2px solid #000;
 }
+
 .form_group {
     position: relative;
     padding: 15px 0 0;
@@ -145,7 +163,7 @@ thead tr{
     font-family: inherit;
     width: 100%;
     border: 0;
-    border-bottom: 2px solid ;
+    border-bottom: 2px solid;
     outline: 0;
     font-size: 1.3rem;
     color: #000000;
@@ -153,14 +171,15 @@ thead tr{
     background: transparent;
     transition: border-color 0.2s;
 }
+
 .form_field::placeholder {
-     color: transparent;
+    color: transparent;
 }
 
 .form_field:placeholder-shown ~ .form_label {
-     font-size: 1.3rem;
-     cursor: text;
-     top: 20px;
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
 }
 
 .form_label {
@@ -172,13 +191,14 @@ thead tr{
     color: var(--gray);
 }
 
-.form_field:focus{
+.form_field:focus {
     padding-bottom: 6px;
     font-weight: 700;
     border-width: 3px;
     border-image: linear-gradient(to right, var(--primary), var(--secondary));
     border-image-slice: 1;
 }
+
 .form_field:focus .form_label {
     position: absolute;
     top: 0;
@@ -186,11 +206,11 @@ thead tr{
     transition: 0.2s;
     font-size: 1rem;
     color: var(--primary);
-    font-weight:700;
+    font-weight: 700;
 }
 
 .form_field:required, .form_field:invalid {
-    box-shadow:none;
+    box-shadow: none;
 }
 
 .form_select select {
@@ -208,7 +228,7 @@ thead tr{
 
 .form-select select:focus,
 .form-select select:focus-within,
-.form-select select:focus-visible{
+.form-select select:focus-visible {
     outline: none;
 }
 
