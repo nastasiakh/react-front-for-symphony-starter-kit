@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../../components/admin/Layout";
 import Header from "../../../components/admin/Header";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +19,11 @@ function PageList() {
   useEffect(() => {
     dispatch(getPages());
   }, []);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageNumber = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <Layout>
@@ -77,7 +82,11 @@ function PageList() {
             </tbody>
           </table>
         </div>
-        <Pagination totalPage={pages.length}></Pagination>
+        <Pagination
+          totalPage={Math.ceil(35 / 10)}
+          currentPage={currentPage}
+          moveToPageNumber={handlePageNumber}
+        ></Pagination>
       </div>
     </Layout>
   );

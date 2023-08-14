@@ -1,38 +1,65 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Pagination = ({ totalPage }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const increasePage = () => {
-    setCurrentPage((prevState) => prevState++);
-  };
-  const decreasePage = () => {
-    setCurrentPage((prevState) => prevState--);
+const Pagination = ({ totalPage, currentPage, moveToPageNumber }) => {
+  const handlePageNumber = (pageNumber) => {
+    moveToPageNumber(pageNumber);
   };
   return (
-    <div className={"d-flex justify-content-end"}>
+    <div className={"d-flex justify-content-center"}>
       <div
         className={
-          "d-flex justify-content-end flex-row col-6 text-center align-items-baseline"
+          "pagination-container d-flex justify-content-between flex-row col-5 text-center align-items-baseline p-0"
         }
       >
-        <button
-          className={"col-2 app-button"}
-          onClick={decreasePage}
-          disabled={currentPage === 1}
+        <span
+          className={`d-block pagination-item ${
+            currentPage === 1 ? "disabled" : ""
+          }`}
+          onClick={() => handlePageNumber(1)}
+        >
+          First
+        </span>
+        <span
+          className={`d-block pagination-item ${
+            currentPage === 1 ? "disabled" : ""
+          }`}
+          onClick={() => handlePageNumber(currentPage - 1)}
         >
           Previous
-        </button>
-        <div className={"d-flex col-2 justify-content-center "}>
-          {currentPage} of {totalPage}
-        </div>
-        <button
-          className={"app-button col-2"}
-          onClick={increasePage}
-          disabled={currentPage === totalPage}
+        </span>
+        <ul
+          className={
+            "d-flex list-group-horizontal list-unstyled m-0 pagination-pages-container"
+          }
+        >
+          {Array.from({ length: totalPage }, (_, index) => (
+            <li
+              key={index}
+              className={`${
+                currentPage === index + 1 ? "active" : ""
+              } pagination-item`}
+              onClick={() => handlePageNumber(index + 1)}
+            >
+              {index + 1}
+            </li>
+          ))}
+        </ul>
+        <span
+          className={`d-block pagination-item ${
+            currentPage === totalPage ? "disabled" : ""
+          }`}
+          onClick={() => handlePageNumber(currentPage + 1)}
         >
           Next
-        </button>
+        </span>
+        <span
+          className={`d-block pagination-item ${
+            currentPage === totalPage ? "disabled" : ""
+          }`}
+          onClick={() => handlePageNumber(totalPage)}
+        >
+          Last
+        </span>
       </div>
     </div>
   );
