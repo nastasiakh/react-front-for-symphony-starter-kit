@@ -1,22 +1,22 @@
-import {RESET_ERRORS, SET_ERRORS,} from "../actions/actionTypes";
+import { RESET_ERRORS, SET_ERRORS } from "../actions/actionTypes";
 
-const initialState = [];
+const initialState = {
+  error: null,
+};
 
-function errorsReducer(errors = initialState, action) {
+function errorsReducer(state = initialState, action) {
+  const { type, payload } = action;
 
-    const {type, payload} = action;
+  switch (type) {
+    case SET_ERRORS:
+      return { ...state, error: payload };
 
-    switch (type) {
+    case RESET_ERRORS:
+      return { ...state, error: null };
 
-        case SET_ERRORS:
-            return payload;
-
-        case RESET_ERRORS:
-            return null;
-
-        default:
-            return null;
-    }
+    default:
+      return null;
+  }
 }
 
 export default errorsReducer;

@@ -21,35 +21,40 @@ import Login from "./pages/admin/Login";
 import "./styles/app.css";
 import SignUp from "./pages/admin/SignUp";
 import { tokenSelector } from "./state/selectors";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const authenticated = useSelector(tokenSelector);
 
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+    <div>
+      <ToastContainer autoClose={3000} />
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
 
-        <Route path="/admin/login" element={<Login />} />
-        <Route path="/admin/signUp" element={<SignUp />} />
+          <Route path="/admin/login" element={<Login />} />
+          <Route path="/admin/signUp" element={<SignUp />} />
 
-        {authenticated?.length ? (
-          <>
-            <Route path="/admin" element={<Dashboard />} />
-            <Route path="/pages" element={<PageList />} />
-            <Route path="/pages/create" element={<PageCreate />} />
-            <Route path="/pages/:id/edit" element={<PageEdit />} />
-          </>
-        ) : (
-          <Route path="*" element={<Navigate replace to="/admin/login" />} />
-        )}
+          {authenticated?.length ? (
+            <>
+              <Route path="/admin" element={<Dashboard />} />
+              <Route path="/pages" element={<PageList />} />
+              <Route path="/pages/create" element={<PageCreate />} />
+              <Route path="/pages/:id/edit" element={<PageEdit />} />
+            </>
+          ) : (
+            <Route path="*" element={<Navigate replace to="/admin/login" />} />
+          )}
 
-        <Route element={<NotFound />} />
-      </Routes>
-    </Router>
+          <Route element={<NotFound />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
